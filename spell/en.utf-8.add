@@ -1,0 +1,11 @@
+kubernetes
+k8s
+ETCD
+Kubelet
+APIServer
+kubectl
+kubeadm
+KubeProxy
+iptables
+DaemonSet
+ReplicaSet
