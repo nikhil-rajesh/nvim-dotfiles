@@ -327,30 +327,46 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: glow.nvim
+time([[Config for glow.nvim]], true)
+require("config/glow")
+time([[Config for glow.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require("config/treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require("config/telescope")
+time([[Config for telescope.nvim]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 require("config/colorizer")
 time([[Config for nvim-colorizer.lua]], false)
--- Config for: sniprun
-time([[Config for sniprun]], true)
-require("config/sniprun")
-time([[Config for sniprun]], false)
 -- Config for: symbols-outline.nvim
 time([[Config for symbols-outline.nvim]], true)
 require("config/outline")
 time([[Config for symbols-outline.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require("config/cmp")
-time([[Config for nvim-cmp]], false)
+-- Config for: alpha-nvim
+time([[Config for alpha-nvim]], true)
+require("config/alpha")
+time([[Config for alpha-nvim]], false)
 -- Config for: spaceless.nvim
 time([[Config for spaceless.nvim]], true)
 require("config/spaceless")
 time([[Config for spaceless.nvim]], false)
--- Config for: neoscroll.nvim
-time([[Config for neoscroll.nvim]], true)
-require("config/neoscroll")
-time([[Config for neoscroll.nvim]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+require("config/comment")
+time([[Config for Comment.nvim]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+require("config/which-key")
+time([[Config for which-key.nvim]], false)
+-- Config for: sniprun
+time([[Config for sniprun]], true)
+require("config/sniprun")
+time([[Config for sniprun]], false)
 -- Config for: material.nvim
 time([[Config for material.nvim]], true)
 require("config/material")
@@ -359,54 +375,38 @@ time([[Config for material.nvim]], false)
 time([[Config for lualine.nvim]], true)
 require("config/lualine")
 time([[Config for lualine.nvim]], false)
--- Config for: alpha-nvim
-time([[Config for alpha-nvim]], true)
-require("config/alpha")
-time([[Config for alpha-nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-require("config/comment")
-time([[Config for Comment.nvim]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 require("config/nvim-tree")
 time([[Config for nvim-tree.lua]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("config/treesitter")
-time([[Config for nvim-treesitter]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
 require("config/indent_blankline")
 time([[Config for indent-blankline.nvim]], false)
--- Config for: nvim-notify
-time([[Config for nvim-notify]], true)
-require("config/notify")
-time([[Config for nvim-notify]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-require("config/which-key")
-time([[Config for which-key.nvim]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require("config/gitsigns")
-time([[Config for gitsigns.nvim]], false)
--- Config for: glow.nvim
-time([[Config for glow.nvim]], true)
-require("config/glow")
-time([[Config for glow.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require("config/lsp")
-time([[Config for nvim-lspconfig]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 require("config/autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require("config/telescope")
-time([[Config for telescope.nvim]], false)
+-- Config for: nvim-notify
+time([[Config for nvim-notify]], true)
+require("config/notify")
+time([[Config for nvim-notify]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require("config/lsp")
+time([[Config for nvim-lspconfig]], false)
+-- Config for: neoscroll.nvim
+time([[Config for neoscroll.nvim]], true)
+require("config/neoscroll")
+time([[Config for neoscroll.nvim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require("config/gitsigns")
+time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require("config/cmp")
+time([[Config for nvim-cmp]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
