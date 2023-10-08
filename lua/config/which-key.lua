@@ -48,6 +48,7 @@ wk.register({
             name = "sidebar",
             i = { "<cmd>NvimTreeToggle<cr>", "File Tree Sidebar" },
             s = { "<cmd>SymbolsOutline<cr>", "Symbols Sidebar" },
+            t = { "<cmd>TroubleToggle<cr>", "Diagnostics Sidebar" }
         },
         g = {
             name = "gitsigns",

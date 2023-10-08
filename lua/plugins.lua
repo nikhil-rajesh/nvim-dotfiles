@@ -111,8 +111,7 @@ return require("packer").startup(
     -- Tree to view symbols in source code
     use {
       "simrat39/symbols-outline.nvim",
-      cmd = { "SymbolsOutline" },
-      setup = get_config("outline"),
+      config = get_config("outline"),
     }
 
     -- Automatic Bracket Closing
@@ -166,6 +165,14 @@ return require("packer").startup(
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
       config = get_config("treesitter")
+    }
+
+    -- Show window with diagnostics
+    use {
+      "folke/trouble.nvim",
+      requires = {
+        { "nvim-tree/nvim-web-devicons" }
+      }
     }
 
     -- Better fuzzy search
