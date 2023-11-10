@@ -25,8 +25,8 @@ vim.o.expandtab = true
 vim.o.smarttab = true
 
 -- Rooter
-vim.g.rooter_pattern = {'composer.json', '.git', 'Makefile', '_darcs', '.hg', '.bzr', '.svn', 'node_modules', 'CMakeLists.txt', 'init.lua', 'pom.xml', 'go.mod'}
-vim.g.outermost_root = false
+-- vim.g.rooter_pattern = {'composer.json', '.git', 'Makefile', '_darcs', '.hg', '.bzr', '.svn', 'node_modules', 'CMakeLists.txt', 'init.lua', 'pom.xml', 'go.mod'}
+-- vim.g.outermost_root = false
 
 -- Misc
 vim.o.termguicolors = true

@@ -68,7 +68,7 @@ wk.register({
     ["<C-f>"] = {
         name = "file",
         f = { "<cmd>Telescope find_files --hidden=true<cr>", "Find File" },
-        g = { "<cmd>Telescope live_grep --hidden=true<cr>", "Search Inside Files" },
+        g = { "<cmd>Telescope live_grep_args --hidden=true<cr>", "Search Inside Files" },
         b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
         r = { "<cmd>Telescope registers<cr>", "Find Register" },
         t = { "<cmd>Telescope treesitter<cr>", "Find Treesitter Symbols" },

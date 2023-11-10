@@ -19,7 +19,10 @@ return require("packer").startup(
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     -- Change Root directory
-    use "ygm2/rooter.nvim"
+    use {
+      "ahmedkhalf/project.nvim",
+      config = get_config("project")
+    }
     -- Snippets
     use "rafamadriz/friendly-snippets"
     -- Speeds up neovim
@@ -179,6 +182,7 @@ return require("packer").startup(
       "nvim-telescope/telescope.nvim",
       requires = {
         { "nvim-lua/plenary.nvim" },
+        { "nvim-telescope/telescope-live-grep-args.nvim" },
         { "kyazdani42/nvim-web-devicons", opt = true }
       },
       config = get_config("telescope")
