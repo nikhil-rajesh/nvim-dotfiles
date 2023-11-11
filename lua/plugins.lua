@@ -14,7 +14,6 @@ return {
   "rafamadriz/friendly-snippets",
   -- Learn Vim Game
   "ThePrimeagen/vim-be-good",
-  "davidgranstrom/nvim-markdown-preview",
   -- Terraform SyntaxHighlight
   "hashivim/vim-terraform",
   "RRethy/vim-illuminate",
@@ -25,7 +24,7 @@ return {
   -- Remove trailing spaces
   "lewis6991/spaceless.nvim",
   -- Change Root directory
-  { "ahmedkhalf/project.nvim",       config = get_config("project"),  main = "project_nvim" },
+  { "ahmedkhalf/project.nvim", config = get_config("project"), main = "project_nvim" },
   -- Key bindings pop-up
   { "folke/which-key.nvim",          config = get_config("which-key") },
   -- Material Theme
@@ -48,11 +47,11 @@ return {
   -- Markdown Preview
   {
     "ellisonleao/glow.nvim",
-    opts = {}
+    opts = {},
   },
   -- Commenter
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     opts = {},
     lazy = false,
   },
@@ -60,7 +59,7 @@ return {
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
-      require 'colorizer'.setup()
+      require "colorizer".setup()
     end
   },
   -- Automatic Bracket Closing
@@ -154,5 +153,10 @@ return {
       "kyazdani42/nvim-web-devicons",
     },
     config = get_config("nvim-tree"),
+  },
+  {
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {}
   }
 }
