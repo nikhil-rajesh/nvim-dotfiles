@@ -17,34 +17,58 @@ return {
   "davidgranstrom/nvim-markdown-preview",
   -- Terraform SyntaxHighlight
   "hashivim/vim-terraform",
+  "RRethy/vim-illuminate",
   -- Pictograms for LSP completion
   "onsails/lspkind.nvim",
-  -- Change Root directory
-  { "ahmedkhalf/project.nvim",             config = get_config("project"),          main = "project_nvim" },
-  -- Markdown Preview
-  { "ellisonleao/glow.nvim",               config = get_config("glow") },
-  -- Key bindings pop-up
-  { "folke/which-key.nvim",                config = get_config("which-key") },
   -- Notifications
-  { "rcarriga/nvim-notify",                config = get_config("notify") },
-  -- Indent blank lines (just like the name)
-  { "lukas-reineke/indent-blankline.nvim", config = get_config("indent_blankline"), main = "ibl" },
-  -- Color highlighter
-  { "norcalli/nvim-colorizer.lua",         config = get_config("colorizer") },
-  -- Smooth Scrolling
-  { "karb94/neoscroll.nvim",               config = get_config("neoscroll") },
-  -- Material Theme
-  { "marko-cerovac/material.nvim",         config = get_config("material") },
-  -- Commenter
-  { "numToStr/Comment.nvim",               config = get_config("comment") },
-  -- Tree to view symbols in source code
-  { "simrat39/symbols-outline.nvim",       config = get_config("outline") },
-  -- Automatic Bracket Closing
-  { "windwp/nvim-autopairs",               config = get_config("autopairs") },
+  "rcarriga/nvim-notify",
   -- Remove trailing spaces
-  { "lewis6991/spaceless.nvim",            config = get_config("spaceless") },
+  "lewis6991/spaceless.nvim",
+  -- Change Root directory
+  { "ahmedkhalf/project.nvim",       config = get_config("project"),  main = "project_nvim" },
+  -- Key bindings pop-up
+  { "folke/which-key.nvim",          config = get_config("which-key") },
+  -- Material Theme
+  { "marko-cerovac/material.nvim",   config = get_config("material") },
+  -- Tree to view symbols in source code
+  { "simrat39/symbols-outline.nvim", config = get_config("outline") },
   -- LSP
-  { "neovim/nvim-lspconfig",               config = get_config("lsp") },
+  { "neovim/nvim-lspconfig",         config = get_config("lsp") },
+  -- Smooth Scrolling
+  {
+    "karb94/neoscroll.nvim",
+    opts = {},
+  },
+  -- Indent blank lines (just like the name)
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {},
+    main = "ibl"
+  },
+  -- Markdown Preview
+  {
+    "ellisonleao/glow.nvim",
+    opts = {}
+  },
+  -- Commenter
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    lazy = false,
+  },
+  -- Color highlighter
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require 'colorizer'.setup()
+    end
+  },
+  -- Automatic Bracket Closing
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {}
+  },
   {
     "kdheepak/lazygit.nvim",
     -- optional for floating window border decoration
@@ -70,7 +94,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
-    config = get_config("gitsigns")
+    opts = {}
   },
   -- Awesome Statusline
   {

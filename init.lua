@@ -17,3 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 require('autocmd')
 require('options')
 require("lazy").setup("plugins")
+
+-- Enable the colorscheme
+vim.cmd 'colorscheme material'
