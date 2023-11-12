@@ -19,4 +19,4 @@ require('options')
 require("lazy").setup("plugins")
 
 -- Enable the colorscheme
-vim.cmd 'colorscheme material'
+vim.cmd 'colorscheme catppuccin-mocha'

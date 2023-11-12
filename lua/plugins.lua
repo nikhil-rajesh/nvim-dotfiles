@@ -30,6 +30,8 @@ return {
   { "folke/which-key.nvim",          config = get_config("which-key") },
   -- Material Theme
   { "marko-cerovac/material.nvim",   config = get_config("material") },
+  -- Catpuccin Theme
+  { "catppuccin/nvim",               name = "catppuccin",             priority = 1000 },
   -- Tree to view symbols in source code
   { "simrat39/symbols-outline.nvim", config = get_config("outline") },
   -- LSP
@@ -65,6 +67,7 @@ return {
   },
   {
     "luukvbaal/statuscol.nvim",
+    lazy = false,
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
