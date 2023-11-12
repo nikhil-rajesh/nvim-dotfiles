@@ -18,6 +18,9 @@ end
 require('telescope').setup {
   defaults = {
     buffer_previewer_maker = new_maker,
+    file_ignore_patterns = {
+     "node_modules", "build", "dist", "yarn.lock", "^.git/"
+   },
   },
 }
 

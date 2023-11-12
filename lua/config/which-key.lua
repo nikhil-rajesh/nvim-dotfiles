@@ -79,6 +79,8 @@ wk.register({
     r = { "<cmd>Telescope registers<cr>", "Find Register" },
     t = { "<cmd>Telescope treesitter<cr>", "Find Treesitter Symbols" },
     o = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    p = { "<cmd>Telescope projects<cr>", "Open Projects" },
+    x = { "<cmd>Telescope colorscheme<cr>", "Change colorscheme" },
     a = { "<cmd>Telescope git_bcommits<cr>", "List buffer's git commits with diff preview" },
   },
   n = { "nzzzv", "Force Next Search Term to center" },
