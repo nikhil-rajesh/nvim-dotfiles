@@ -16,15 +16,16 @@ return {
   "ThePrimeagen/vim-be-good",
   -- Terraform SyntaxHighlight
   "hashivim/vim-terraform",
-  "RRethy/vim-illuminate",
   -- Pictograms for LSP completion
   "onsails/lspkind.nvim",
   -- Notifications
   "rcarriga/nvim-notify",
   -- Remove trailing spaces
   "lewis6991/spaceless.nvim",
+  -- Highlight cursor when moved
+  "danilamihailov/beacon.nvim",
   -- Change Root directory
-  { "ahmedkhalf/project.nvim", config = get_config("project"), main = "project_nvim" },
+  { "ahmedkhalf/project.nvim",       config = get_config("project"),  main = "project_nvim" },
   -- Key bindings pop-up
   { "folke/which-key.nvim",          config = get_config("which-key") },
   -- Material Theme
@@ -33,6 +34,54 @@ return {
   { "simrat39/symbols-outline.nvim", config = get_config("outline") },
   -- LSP
   { "neovim/nvim-lspconfig",         config = get_config("lsp") },
+  -- Highlight usage of variables
+  {
+    "RRethy/vim-illuminate",
+    config = function()
+      require("illuminate").configure({
+        filetypes_denylist = {
+          'NvimTree',
+        }
+      })
+    end
+  },
+  {
+    "utilyre/barbecue.nvim",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = get_config("barbecue-nvim"),
+  },
+  -- Better folding
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = {
+      "kevinhwang91/promise-async",
+      "luukvbaal/statuscol.nvim",
+    },
+    event = "BufReadPost",
+    config = get_config("nvim-ufo")
+  },
+  {
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        relculright = true,
+        segments = {
+          { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+          { text = { "%s" },                  click = "v:lua.ScSa" },
+          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+        },
+      })
+    end,
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
   -- Smooth Scrolling
   {
     "karb94/neoscroll.nvim",

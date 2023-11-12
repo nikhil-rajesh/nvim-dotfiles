@@ -13,9 +13,15 @@ vim.g.mapleader = ','
 vim.o.completeopt = "menu,menuone,noselect"
 
 -- Set folding
-vim.o.foldmethod = 'expr'
-vim.o.foldlevel = 30
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+-- Using nvim-ufo
+-- vim.o.foldmethod = 'expr'
+-- vim.o.foldlevel = 30
+-- vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Sane Tab Settings
 vim.o.tabstop = 2

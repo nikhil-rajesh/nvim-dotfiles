@@ -41,8 +41,8 @@ wk.register({
     y = { '"+y', "Copy to System Clipboard" },
     p = { '"+p', "Paste from System Clipboard" },
     m = {
-      name = "markdown",
       p = { "<cmd>Glow<cr>", "Markdown Preview" },
+      c = { ":lua require('material.functions').find_style()<cr>", "Cycle themes" }
     },
     s = {
       name = "sidebar",
@@ -97,6 +97,8 @@ wk.register({
       c = { "Comment Current Line" },
     }
   },
+  zR = { ":lua require('ufo').openAllFolds()<cr>", "Open All Folds" },
+  zM = { ":lua require('ufo').closeAllFolds()<cr>", "Close All Folds" },
   ["<C-h>"] = { "<C-w><C-h>", "Goto Left Split" },
   ["<C-j>"] = { "<C-w><C-j>", "Goto Bottom Split" },
   ["<C-k>"] = { "<C-w><C-k>", "Goto Top Split" },
