@@ -11,7 +11,7 @@ for _, lsp in pairs(servers) do
   }
 end
 
-require'lspconfig'.pylsp.setup{
+require 'lspconfig'.pylsp.setup {
   flags = {
     debounce_text_changes = 150,
   },
@@ -19,7 +19,7 @@ require'lspconfig'.pylsp.setup{
     pylsp = {
       plugins = {
         pycodestyle = {
-          ignore = {'W391'},
+          ignore = { 'W391' },
           maxLineLength = 100
         }
       }
@@ -155,7 +155,7 @@ require 'lspconfig'.groovyls.setup {
 }
 
 -- HTML, CSS, JSON
-local webservers = { 'jsonls', 'cssls', 'html', 'terraformls' }
+local webservers = { 'jsonls', 'cssls', 'html' }
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -167,3 +167,13 @@ for _, lsp in pairs(webservers) do
     }
   }
 end
+
+require 'lspconfig'.terraformls.setup {
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  filetypes = { "terraform" }
+}
+
+require 'lspconfig'.tflint.setup{}

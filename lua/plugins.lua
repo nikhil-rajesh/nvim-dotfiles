@@ -25,17 +25,19 @@ return {
   -- Highlight cursor when moved
   "danilamihailov/beacon.nvim",
   -- Change Root directory
-  { "ahmedkhalf/project.nvim",       config = get_config("project"),  main = "project_nvim" },
+  { "ahmedkhalf/project.nvim",         config = get_config("project"),  main = "project_nvim" },
   -- Key bindings pop-up
-  { "folke/which-key.nvim",          config = get_config("which-key") },
+  { "folke/which-key.nvim",            config = get_config("which-key") },
   -- Material Theme
-  { "marko-cerovac/material.nvim",   config = get_config("material") },
+  { "marko-cerovac/material.nvim",     config = get_config("material") },
   -- Catpuccin Theme
-  { "catppuccin/nvim",               name = "catppuccin",             priority = 1000 },
+  { "catppuccin/nvim",                 name = "catppuccin",             priority = 1000 },
   -- Tree to view symbols in source code
-  { "simrat39/symbols-outline.nvim", config = get_config("outline") },
+  { "simrat39/symbols-outline.nvim",   config = get_config("outline") },
   -- LSP
-  { "neovim/nvim-lspconfig",         config = get_config("lsp") },
+  { "neovim/nvim-lspconfig",           config = get_config("lsp") },
+  -- Rainbow Delimiters
+  { "HiPhish/rainbow-delimiters.nvim", config = get_config("rainbow") },
   -- Highlight usage of variables
   {
     "RRethy/vim-illuminate",
@@ -116,15 +118,23 @@ return {
   },
   -- Automatic Bracket Closing
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {}
+    'altermo/ultimate-autopair.nvim',
+    event = { 'InsertEnter', 'CmdlineEnter' },
+    branch = 'v0.6', --recomended as each new version will have breaking changes
+    opts = {},
   },
+  -- {
+  --   "windwp/nvim-autopairs",
+  --   event = "InsertEnter",
+  --   opts = {}
+  -- },
+  -- Git UI
   {
     "kdheepak/lazygit.nvim",
     -- optional for floating window border decoration
     dependencies = { "nvim-lua/plenary.nvim" },
   },
+  -- Run parts of code directly
   {
     "michaelb/sniprun",
     build = "bash ./install.sh",
@@ -206,6 +216,7 @@ return {
     },
     config = get_config("nvim-tree"),
   },
+  -- Split and join blocks of code
   {
     "Wansmer/treesj",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
