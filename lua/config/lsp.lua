@@ -27,6 +27,37 @@ require 'lspconfig'.pylsp.setup {
   }
 }
 
+-- Helm Yaml
+local configs = require('lspconfig.configs')
+local util = require('lspconfig.util')
+
+if not configs.helm_ls then
+  configs.helm_ls = {
+    default_config = {
+      cmd = { "helm_ls", "serve" },
+      filetypes = { 'helm' },
+      root_dir = function(fname)
+        return util.root_pattern('Chart.yaml')(fname)
+      end,
+    },
+  }
+end
+
+require('lspconfig').helm_ls.setup {
+  filetypes = { "helm" },
+  cmd = { "helm_ls", "serve" },
+}
+
+require('lspconfig').yamlls.setup {
+  settings = {
+    yaml = {
+      format = {
+        enable = true
+      }
+    }
+  }
+}
+
 -- golang
 require('lspconfig').gopls.setup {
   flags = {
@@ -69,6 +100,7 @@ require('lspconfig').gopls.setup {
 
 -- Install Jedi for pylsp
 require 'lspconfig'.pylsp.setup {
+  cmd_env = { VIRTUAL_ENV = "./venv" },
   flags = {
     debounce_text_changes = 150,
   },
@@ -78,6 +110,12 @@ require 'lspconfig'.pylsp.setup {
         pycodestyle = {
           ignore = { 'W391' },
           maxLineLength = 100
+        },
+        black = {
+          enabled = true
+        },
+        ruff = {
+          enabled = false
         }
       }
     }
@@ -176,4 +214,4 @@ require 'lspconfig'.terraformls.setup {
   filetypes = { "terraform" }
 }
 
-require 'lspconfig'.tflint.setup{}
+require 'lspconfig'.tflint.setup {}

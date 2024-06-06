@@ -48,7 +48,9 @@ wk.register({
       name = "sidebar",
       i = { "<cmd>NvimTreeToggle<cr>", "File Tree Sidebar" },
       s = { "<cmd>SymbolsOutline<cr>", "Symbols Sidebar" },
-      t = { "<cmd>TroubleToggle<cr>", "Diagnostics Sidebar" }
+      t = { "<cmd>TroubleToggle<cr>", "Diagnostics Sidebar" },
+      h = { "<C-w>K", "Swap vertical to horizontal splits" },
+      v = { "<C-w>H", "Swap horizontal to vertical splits" },
     },
     g = {
       name = "gitsigns",
@@ -73,8 +75,10 @@ wk.register({
   },
   ["<C-f>"] = {
     name = "file",
-    f = { "<cmd>Telescope find_files --hidden=true<cr>", "Find File" },
-    g = { "<cmd>Telescope live_grep_args --hidden=true<cr>", "Search Inside Files" },
+    f = { "<cmd>Telescope find_files<cr>", "Find File" },
+    F = { "<cmd>Telescope find_files find_command=rg,--no-ignore,--files<cr>", "Find File" },
+    g = { "<cmd>Telescope live_grep<cr>", "Search Inside Files" },
+    G = { "<cmd>lua require('telescope.builtin').live_grep({ additional_args = { \"--hidden\", \"--no-ignore\" }})<cr>", "Search Inside Ignored Files Also" },
     b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
     r = { "<cmd>Telescope registers<cr>", "Find Register" },
     t = { "<cmd>Telescope treesitter<cr>", "Find Treesitter Symbols" },
