@@ -215,3 +215,5 @@ require 'lspconfig'.terraformls.setup {
 }
 
 require 'lspconfig'.tflint.setup {}
+
+require'lspconfig'.bashls.setup{}

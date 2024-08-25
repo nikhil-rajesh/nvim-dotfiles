@@ -30,8 +30,6 @@ return {
   "danilamihailov/beacon.nvim",
   -- Change Root directory
   { "ahmedkhalf/project.nvim",         config = get_config("project"),  main = "project_nvim" },
-  -- Key bindings pop-up
-  { "folke/which-key.nvim",            config = get_config("which-key") },
   -- Material Theme
   { "marko-cerovac/material.nvim",     config = get_config("material") },
   -- Catpuccin Theme
@@ -42,6 +40,15 @@ return {
   { "neovim/nvim-lspconfig",           config = get_config("lsp") },
   -- Rainbow Delimiters
   { "HiPhish/rainbow-delimiters.nvim", config = get_config("rainbow") },
+  -- Key bindings pop-up
+  {
+    "folke/which-key.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "echasnovski/mini.icons",
+    },
+    config = get_config("which-key")
+  },
   -- Highlight usage of variables
   {
     "RRethy/vim-illuminate",
@@ -141,7 +148,9 @@ return {
   -- Git UI 2
   {
     'SuperBo/fugit2.nvim',
-    opts = {},
+    opts = {
+      libgit2_path = '/opt/homebrew/lib/libgit2.dylib'
+    },
     dependencies = {
       'MunifTanjim/nui.nvim',
       'nvim-tree/nvim-web-devicons',
@@ -151,7 +160,7 @@ return {
         dependencies = { 'stevearc/dressing.nvim' }
       },
     },
-    cmd = { 'Fugit2', 'Fugit2Graph' },
+    cmd = { 'Fugit2', 'Fugit2Diff', 'Fugit2Graph' },
     keys = {
       { '<leader>F', mode = 'n', '<cmd>Fugit2<cr>' }
     }
