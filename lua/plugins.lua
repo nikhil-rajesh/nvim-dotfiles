@@ -29,11 +29,11 @@ return {
   -- Highlight cursor when moved
   "danilamihailov/beacon.nvim",
   -- Change Root directory
-  { "ahmedkhalf/project.nvim",         config = get_config("project"),  main = "project_nvim" },
+  { "ahmedkhalf/project.nvim",         config = get_config("project"), main = "project_nvim" },
   -- Material Theme
   { "marko-cerovac/material.nvim",     config = get_config("material") },
   -- Catpuccin Theme
-  { "catppuccin/nvim",                 name = "catppuccin",             priority = 1000 },
+  { "catppuccin/nvim",                 name = "catppuccin",            priority = 1000 },
   -- Tree to view symbols in source code
   { "simrat39/symbols-outline.nvim",   config = get_config("outline") },
   -- LSP
@@ -225,6 +225,8 @@ return {
   -- Show window with diagnostics
   {
     "folke/trouble.nvim",
+    opts = {},
+    cmd = "Trouble",
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   -- Better fuzzy search

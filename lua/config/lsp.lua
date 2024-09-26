@@ -59,6 +59,7 @@ require('lspconfig').yamlls.setup {
 }
 
 -- golang
+require'lspconfig'.golangci_lint_ls.setup{}
 require('lspconfig').gopls.setup {
   flags = {
     debounce_text_changes = 150,
