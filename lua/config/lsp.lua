@@ -2,7 +2,7 @@
 -- map buffer local keybindings when the language server attaches
 --
 --  yamlls disabled since its not playing nice with helm charts
-local servers = { 'clangd', 'angularls', 'tsserver', 'dockerls' }
+local servers = { 'clangd', 'angularls', 'ts_ls', 'dockerls' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     flags = {
@@ -212,7 +212,7 @@ require 'lspconfig'.terraformls.setup {
   flags = {
     debounce_text_changes = 150,
   },
-  filetypes = { "terraform" }
+  filetypes = { "terraform", "hcl" }
 }
 
 require 'lspconfig'.tflint.setup {}

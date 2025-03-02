@@ -28,6 +28,8 @@ return {
   "lewis6991/spaceless.nvim",
   -- Highlight cursor when moved
   "danilamihailov/beacon.nvim",
+  -- Diffview
+  "sindrets/diffview.nvim",
   -- Change Root directory
   { "ahmedkhalf/project.nvim",         config = get_config("project"), main = "project_nvim" },
   -- Material Theme
@@ -254,5 +256,11 @@ return {
     "Wansmer/treesj",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {}
+  },
+  -- File explorer
+  {
+    'stevearc/oil.nvim',
+    config = get_config("oil"),
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
   }
 }

@@ -18,4 +18,7 @@ require("project_nvim").setup {
     'pom.xml',
     'go.mod',
   },
+  exclude_dirs = {
+    '~/.Projects/traceable-installer-workflow/*'
+  }
 }
