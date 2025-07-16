@@ -31,7 +31,7 @@ return {
   -- Diffview
   "sindrets/diffview.nvim",
   -- Change Root directory
-  { "ahmedkhalf/project.nvim",         config = get_config("project"), main = "project_nvim" },
+  { "DrKJeff16/project.nvim",         config = get_config("project"), main = "project_nvim" },
   -- Material Theme
   { "marko-cerovac/material.nvim",     config = get_config("material") },
   -- Catpuccin Theme
@@ -241,6 +241,7 @@ return {
 
     },
     config = get_config("telescope"),
+    lazy = false,
   },
   -- File explorer
   {

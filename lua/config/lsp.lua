@@ -2,116 +2,21 @@
 -- map buffer local keybindings when the language server attaches
 --
 --  yamlls disabled since its not playing nice with helm charts
-local servers = { 'clangd', 'angularls', 'ts_ls', 'dockerls' }
+local servers = { 'clangd', 'angularls', 'ts_ls', 'dockerls', 'helm_ls', 'yamlls', 'golangci_lint_ls', 'gopls', 'tflint', 'bashls' }
 for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
+  vim.lsp.enable(lsp)
 end
 
-require 'lspconfig'.pylsp.setup {
-  flags = {
-    debounce_text_changes = 150,
-  },
+vim.lsp.enable('pylsp')
+vim.lsp.config('pylsp', {
+  cmd_env = { VIRTUAL_ENV = "./venv" },
   settings = {
     pylsp = {
       plugins = {
         pycodestyle = {
-          ignore = { 'W391' },
+          ignore = {'W391'},
           maxLineLength = 100
         }
-      }
-    }
-  }
-}
-
--- Helm Yaml
-local configs = require('lspconfig.configs')
-local util = require('lspconfig.util')
-
-if not configs.helm_ls then
-  configs.helm_ls = {
-    default_config = {
-      cmd = { "helm_ls", "serve" },
-      filetypes = { 'helm' },
-      root_dir = function(fname)
-        return util.root_pattern('Chart.yaml')(fname)
-      end,
-    },
-  }
-end
-
-require('lspconfig').helm_ls.setup {
-  filetypes = { "helm" },
-  cmd = { "helm_ls", "serve" },
-}
-
-require('lspconfig').yamlls.setup {
-  settings = {
-    yaml = {
-      format = {
-        enable = true
-      }
-    }
-  }
-}
-
--- golang
-require'lspconfig'.golangci_lint_ls.setup{}
-require('lspconfig').gopls.setup {
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    -- https://go.googlesource.com/vscode-go/+/HEAD/docs/settings.md#settings-for
-    gopls = {
-      analyses = {
-        nilness = true,
-        unusedparams = true,
-        unusedwrite = true,
-        useany = true
-      },
-      experimentalPostfixCompletions = true,
-      gofumpt = true,
-      -- staticcheck = true,
-      --
-      -- DISABLED because gopls doesn't invoke the staticcheck binary.
-      -- Instead it imports the analyzers directly and this means it can report on issues the binary doesn't.
-      -- But rather than that being a good thing, it can be annoying because you can't then use line directives to ignore the issue if it's not important.
-      -- So instead I use null-ls to invoke the staticcheck binary.
-      -- https://github.com/golang/go/issues/36373#issuecomment-570643870
-      --
-      -- See also my longer explanation of issues here:
-      -- https://github.com/golangci/golangci-lint/issues/741#issuecomment-1488116634
-      usePlaceholders = true,
-      -- hints = {
-      --   assignVariableTypes = true,
-      --   compositeLiteralFields = true,
-      --   compositeLiteralTypes = true,
-      --   constantValues = true,
-      --   functionTypeParameters = true,
-      --   parameterNames = true,
-      --   rangeVariableTypes = true
-      -- }
-    }
-  }
-}
-
--- Install Jedi for pylsp
-require 'lspconfig'.pylsp.setup {
-  cmd_env = { VIRTUAL_ENV = "./venv" },
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = { 'W391' },
-          maxLineLength = 100
-        },
         black = {
           enabled = true
         },
@@ -121,62 +26,79 @@ require 'lspconfig'.pylsp.setup {
       }
     }
   }
-}
+})
 
 -- Lua
-require 'lspconfig'.lua_ls.setup {
-  on_attach = function()
-    on_attach()
-    vim.cmd [[autocmd BufWritePre <buffer> lua require'stylua-nvim'.format_file()]]
-  end,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    Lua = {
+vim.lsp.enable('lua_ls')
+vim.lsp.config('lua_ls', {
+  on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if
+        path ~= vim.fn.stdpath('config')
+        and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+      then
+        return
+      end
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
       runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        -- Tell the language server which version of Lua you're using (most
+        -- likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
-        path = runtime_path,
+        -- Tell the language server how to find Lua modules same way as Neovim
+        -- (see `:h lua-module-load`)
+        path = {
+          'lua/?.lua',
+          'lua/?/init.lua',
+        },
       },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
+      -- Make the server aware of Neovim runtime files
       workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false, -- THIS IS THE IMPORTANT LINE TO ADD
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    }
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths
+          -- here.
+          -- '${3rd}/luv/library'
+          -- '${3rd}/busted/library'
+        }
+        -- Or pull in all of 'runtimepath'.
+        -- NOTE: this is a lot slower and will cause issues when working on
+        -- your own configuration.
+        -- See https://github.com/neovim/nvim-lspconfig/issues/3189
+        -- library = {
+        --   vim.api.nvim_get_runtime_file('', true),
+        -- }
+      }
+    })
+  end,
+  settings = {
+    Lua = {}
   }
-}
+})
 
 
 -- Java
-require 'lspconfig'.jdtls.setup {
-  cmd = { "jdtls" },
+vim.lsp.enable('jdtls')
+vim.lsp.config('jdtls', {
+  cmd = { 'jdtls' }
   init_options = {
     workspace = "/Users/nikhilr/.cache/jdtls/workspace"
   },
-  root_dir = function(fname)
-    return require 'lspconfig'.util.root_pattern('pom.xml', 'gradle.build', '.git')(fname) or vim.fn.getcwd()
-  end,
+  root_markers = { ".git", "build.gradle", "build.gradle.kts", "build.xml", "pom.xml", "settings.gradle", "settings.gradle.kts" }
   settings = {
     java = {
       configuration = {
         runtimes = {
           {
-            name = "JavaSE-11",
-            path = "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/"
+            name = "JavaSE-21",
+            path = "/opt/homebrew/Cellar/openjdk@21/21.0.7/libexec/openjdk.jdk/Contents/Home"
           },
           {
-            name = "JavaSE-19",
-            path = "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home/"
+            name = "JavaSE-24",
+            path = "/opt/homebrew/Cellar/openjdk/24.0.1/libexec/openjdk.jdk/Contents/Home"
           },
         }
       }
@@ -185,13 +107,14 @@ require 'lspconfig'.jdtls.setup {
   flags = {
     debounce_text_changes = 150,
   },
-}
+})
 
 -- Groovy
-require 'lspconfig'.groovyls.setup {
+vim.lsp.enable('groovyls')
+vim.lsp.config('groovyls', {
   -- Unix
   cmd = { "java", "-jar", "/Users/nikhilr/.plugins/groovy-language-server/build/libs/groovy-language-server-all.jar" },
-}
+})
 
 -- HTML, CSS, JSON
 local webservers = { 'jsonls', 'cssls', 'html' }
@@ -199,22 +122,13 @@ local webservers = { 'jsonls', 'cssls', 'html' }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 for _, lsp in pairs(webservers) do
-  require('lspconfig')[lsp].setup {
+  vim.lsp.enable(lsp)
+  vim.lsp.config(lsp, {
     capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
+  })
 end
 
-require 'lspconfig'.terraformls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  filetypes = { "terraform", "hcl" }
-}
-
-require 'lspconfig'.tflint.setup {}
-
-require'lspconfig'.bashls.setup{}
+vim.lsp.enable('terraformls')
+vim.lsp.config('terraformls', {
+  filetypes = { "terraform", "hcl", "terraform-vars" }
+})
