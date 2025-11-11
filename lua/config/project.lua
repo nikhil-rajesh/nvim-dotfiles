@@ -1,8 +1,7 @@
-require("project_nvim").setup {
+require("project").setup {
   show_hidden = true,
   detection_methods = {
     "pattern",
-    "lsp",
   },
   patterns = {
     'composer.json',

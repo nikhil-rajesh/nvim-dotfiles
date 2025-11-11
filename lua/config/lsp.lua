@@ -16,7 +16,7 @@ vim.lsp.config('pylsp', {
         pycodestyle = {
           ignore = {'W391'},
           maxLineLength = 100
-        }
+        },
         black = {
           enabled = true
         },
@@ -83,11 +83,11 @@ vim.lsp.config('lua_ls', {
 -- Java
 vim.lsp.enable('jdtls')
 vim.lsp.config('jdtls', {
-  cmd = { 'jdtls' }
+  cmd = { 'jdtls' },
   init_options = {
     workspace = "/Users/nikhilr/.cache/jdtls/workspace"
   },
-  root_markers = { ".git", "build.gradle", "build.gradle.kts", "build.xml", "pom.xml", "settings.gradle", "settings.gradle.kts" }
+  root_markers = { ".git", "build.gradle", "build.gradle.kts", "build.xml", "pom.xml", "settings.gradle", "settings.gradle.kts" },
   settings = {
     java = {
       configuration = {

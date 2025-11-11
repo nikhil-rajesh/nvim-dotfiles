@@ -21,6 +21,12 @@ require('telescope').setup {
     file_ignore_patterns = {
       "node_modules", "build", "dist", "yarn.lock", "^.git/"
     },
+    mappings = {
+      i = {
+        ["<C-k>"] = require('telescope.actions').cycle_history_next,
+        ["<C-j>"] = require('telescope.actions').cycle_history_prev,
+      },
+    },
   },
   pickers = {
     find_files = {

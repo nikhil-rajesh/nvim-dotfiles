@@ -34,7 +34,7 @@ wk.add({
   { "<C-f>a", "<cmd>Telescope git_bcommits<cr>", desc = "List buffer's git commits with diff preview" },
   { "<C-f>b", "<cmd>Telescope buffers<cr>", desc = "Find Buffer" },
   { "<C-f>f", "<cmd>Telescope find_files<cr>", desc = "Find File" },
-  { "<C-f>g", "<cmd>Telescope live_grep<cr>", desc = "Search Inside Files" },
+  { "<C-f>g", "<cmd>Telescope live_grep_args<cr>", desc = "Search Inside Files" },
   { "<C-f>o", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
   { "<C-f>p", "<cmd>Telescope projects<cr>", desc = "Open Projects" },
   { "<C-f>r", "<cmd>Telescope registers<cr>", desc = "Find Register" },
