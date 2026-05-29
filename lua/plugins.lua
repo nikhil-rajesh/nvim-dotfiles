@@ -9,14 +9,6 @@ end
 return {
   -- ledger
   "ledger/vim-ledger",
-  -- Helm Yaml
-  -- {
-  --   "qvalentin/helm-ls.nvim",
-  --   ft = "helm",
-  --   opts = {
-  --     -- leave empty or see below
-  --   },
-  -- },
   -- Change surround tags faster
   "tpope/vim-repeat",
   "tpope/vim-surround",
