@@ -2,10 +2,25 @@
 -- map buffer local keybindings when the language server attaches
 --
 --  yamlls disabled since its not playing nice with helm charts
-local servers = { 'clangd', 'angularls', 'ts_ls', 'dockerls', 'helm_ls', 'yamlls', 'golangci_lint_ls', 'gopls', 'tflint', 'bashls' }
+local servers = { 'clangd', 'angularls', 'ts_ls', 'dockerls', 'golangci_lint_ls', 'gopls', 'tflint', 'bashls' }
 for _, lsp in pairs(servers) do
   vim.lsp.enable(lsp)
 end
+
+vim.lsp.enable("helm_ls")
+-- setup helm-ls
+vim.lsp.config("helm_ls", {
+  settings = {
+    ["helm-ls"] = {
+      yamlls = {
+        path = "yaml-language-server",
+      },
+    },
+  },
+})
+
+-- enable yamlls
+vim.lsp.enable("yamlls")
 
 vim.lsp.enable('pylsp')
 vim.lsp.config('pylsp', {
@@ -14,7 +29,7 @@ vim.lsp.config('pylsp', {
     pylsp = {
       plugins = {
         pycodestyle = {
-          ignore = {'W391'},
+          ignore = { 'W391' },
           maxLineLength = 100
         },
         black = {
@@ -35,8 +50,8 @@ vim.lsp.config('lua_ls', {
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
       if
-        path ~= vim.fn.stdpath('config')
-        and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+          path ~= vim.fn.stdpath('config')
+          and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
       then
         return
       end

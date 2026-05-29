@@ -10,7 +10,13 @@ return {
   -- ledger
   "ledger/vim-ledger",
   -- Helm Yaml
-  "towolf/vim-helm",
+  -- {
+  --   "qvalentin/helm-ls.nvim",
+  --   ft = "helm",
+  --   opts = {
+  --     -- leave empty or see below
+  --   },
+  -- },
   -- Change surround tags faster
   "tpope/vim-repeat",
   "tpope/vim-surround",
@@ -31,7 +37,7 @@ return {
   -- Diffview
   "sindrets/diffview.nvim",
   -- Change Root directory
-  { "DrKJeff16/project.nvim",         config = get_config("project") },
+  { "DrKJeff16/project.nvim",          config = get_config("project") },
   -- Material Theme
   { "marko-cerovac/material.nvim",     config = get_config("material") },
   -- Catpuccin Theme
